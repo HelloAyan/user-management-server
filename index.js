@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || 5000;
+
+//Middleware
+app.use(cors());
 
 const users = [
     {
@@ -63,6 +67,11 @@ app.get('/', (req, res) => {
 app.get('/user', (req, res) => {
     res.send(users);
 });
+
+app.post('/user', (req, res) => {
+    console.log('post api heating');
+    console.log(req.body);
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port  ${port}`);
